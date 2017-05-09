@@ -13,8 +13,12 @@ The demo contains :
     - Button
     - ImageView 
    - How to create a nested layout
+   - You can check the complete Android's API refernce :  https://developer.android.com/reference/packages.html
 
-- fork the repo
-- clone the repo
+
+- Fork the repo
+- Clone the repo
 - Open the Project with Andorid Studio 
+- To download the Andorid studio for your OS: https://developer.android.com/studio/index.html
+- Make sure you have Java installed on your system by using the command in your terminal : java -version 
 - Modify the build.gradle according to your SDK and build tools
