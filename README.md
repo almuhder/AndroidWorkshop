@@ -12,7 +12,10 @@ The demo contains :
     - CheckBox
     - Button
     - ImageView 
-   - How to create a nested layout
+    - Spinner
+   - How to create a nested layout (LinearLayout) 
+   - How to store data with sharedPrefrence 
+   - Login / Signup Users
    - You can check the complete Android's API refernce :  https://developer.android.com/reference/packages.html
 
 
