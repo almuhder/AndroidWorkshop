@@ -12,6 +12,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     String sql = "";
+    SQLiteDatabase bridge;
 
     public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name , factory, version);
@@ -28,7 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 Config.COL_PASSWORD + " TEXT , " +
                 Config.COL_CITY + " TEXT , " +
                 Config.COL_GENDER + " BOOLEAN  " +
-                ")";
+                ");";
         db.execSQL(sql);
 
     }
@@ -39,6 +40,17 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void registerNewUser(User user){
+        bridge = getWritableDatabase();
+        sql = "INSERT INTO " + Config.TABLE_USERS + //" VALUES "
+                Config.COL_Name + " '"+ user.getName()+"' , " +
+                Config.COL_PHONE + " '"+ user.getPhone()+"' , " +
+                Config.COL_EMAIL + " '"+ user.getEmail()+"', " +
+                Config.COL_PASSWORD + " '"+user.getPassword()+"' , " +
+                Config.COL_CITY + " '"+user.getCity()+"' , " +
+                Config.COL_GENDER + user.isGender() ;
+
+        ;
+        bridge.execSQL(sql);
 
     }
 }

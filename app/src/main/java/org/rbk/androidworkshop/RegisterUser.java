@@ -26,6 +26,8 @@ public class RegisterUser extends AppCompatActivity {
     CheckBox cbAgree;
     Button btnRegister;
 
+    DBHelper helper;
+
 
     // Define a list of cities
     String[] cities = {"Amman", "Ibrid", "Salet", "Aqaba", "Maan"};
@@ -62,7 +64,7 @@ public class RegisterUser extends AppCompatActivity {
 
 
         //
-        DBHelper helper = new DBHelper(this, Config.DATABASE_NAME , null , 1 );
+        helper = new DBHelper(this, Config.DATABASE_NAME , null , 1 );
 
     }
 
@@ -77,6 +79,7 @@ public class RegisterUser extends AppCompatActivity {
         rb  = (RadioButton) findViewById(rgGender.getCheckedRadioButtonId());
         user.setGender(getGender(rb.getText().toString()));
 
+        helper.registerNewUser(user);
 
 //        Toast.makeText(this, // Context : this, Current class , Where the Toast msg supposed to be shown
 //                "Name: " + etName.getText() // the message
