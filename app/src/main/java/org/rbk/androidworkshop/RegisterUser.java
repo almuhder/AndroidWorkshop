@@ -2,6 +2,7 @@ package org.rbk.androidworkshop;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -70,16 +71,23 @@ public class RegisterUser extends AppCompatActivity {
 
     public void showUserInfo(View v){
 
-        User user = new User();
-        user.setName(etName.getText().toString());
-        user.setEmail(etEmail.getText().toString());
-        user.setPhone(etPhone.getText().toString());
-        user.setPassword(etPassword.getText().toString());
-        user.setCity(spCity.getSelectedItem().toString());
-        rb  = (RadioButton) findViewById(rgGender.getCheckedRadioButtonId());
-        user.setGender(getGender(rb.getText().toString()));
+        if (validateUserInput()) {
+            User user = new User();
+            user.setName(etName.getText().toString());
+            user.setEmail(etEmail.getText().toString());
+            user.setPhone(etPhone.getText().toString());
+            user.setPassword(etPassword.getText().toString());
+            user.setCity(spCity.getSelectedItem().toString());
+            rb = (RadioButton) findViewById(rgGender.getCheckedRadioButtonId());
+            Log.d("Debug", rb.getText().toString());
+            user.setGender((getGender(rb.getText().toString())));// convert from string into inteager "1" , "0
+            //user.setGender(1);
 
-        helper.registerNewUser(user);
+            helper.registerNewUser(user);
+        }else{
+            Toast.makeText(this, "Info is incomplete!!", Toast.LENGTH_SHORT).show();
+
+        }
 
 //        Toast.makeText(this, // Context : this, Current class , Where the Toast msg supposed to be shown
 //                "Name: " + etName.getText() // the message
@@ -91,11 +99,19 @@ public class RegisterUser extends AppCompatActivity {
     }
 
 
-    private boolean getGender(String gender ){
-        if( gender == "Male"){
-            return true;
-        }else{
+    private boolean validateUserInput (){
+        if (etName.getText().toString().matches("") ||  etEmail.getText().toString().matches("") ||
+                etPhone.getText().toString().matches("") || etPassword.getText().toString().matches("") ) {
             return false;
+        }else{
+            return true;
+        }
+    }
+    private int getGender(String gender ){
+        if( gender == "Male"){
+            return 1;
+        }else{
+            return 0;
         }
     }
 }

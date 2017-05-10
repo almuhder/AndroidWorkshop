@@ -12,7 +12,7 @@ public class User {
     private String phone;
     private String password;
     private String city;
-    private boolean gender;
+    private int gender; // boolean represent as 1 or 0 in sqlite
 
 
 
@@ -64,11 +64,11 @@ public class User {
         this.city = city;
     }
 
-    public boolean isGender() {
+    public int isGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
